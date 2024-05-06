@@ -93,6 +93,7 @@
 
         }
 
+        //calculating insurance
         static float CalculateInsurance(float deviceCost, float numberOfDevices)
         {
             float costOne;
@@ -113,6 +114,7 @@
 
         }
 
+        //calculating value loss over six months
         static void ValueLoss(float deviceCost)
         {
             float monthOne;
@@ -144,6 +146,8 @@
             return listData[CheckInt(menu, 1, listData.Count) - 1];
         }
 
+        //checking if integer entered is between 1 and 3
+
         static int CheckInt(string question, int min, int max)
         {
 
@@ -171,6 +175,8 @@
 
         }
 
+        //generating menu
+
         static string GenerateMenu(string menuType, List<string> listData)
         {
 
@@ -185,6 +191,7 @@
             return menu;
         }
 
+        //chnaging colour of error message to red
         private static void DisplayErrorMessage(string error)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -192,6 +199,7 @@
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        //seeing if user wants to add another device
         static string Add()
         {
             while (true)
@@ -210,6 +218,7 @@
             }
         }
 
+        //making name have a capatil letter at the start and checking if user hasnt left blank
         static string CheckDeviceName()
         {
             while (true)
@@ -230,6 +239,7 @@
 
         }
 
+        //checking is device cost is a numeric number between 1 and 10000
         static float DeviceCost()
         {
             while (true)
@@ -256,6 +266,8 @@
 
             }
         }
+
+        //checking is device cost is a numeric number between 1 and 1000
         static float NumberOfDevices()
         {
             while (true)
