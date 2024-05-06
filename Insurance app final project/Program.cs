@@ -39,25 +39,32 @@
 
         }
 
-
-
-
-        //initialise a list of strings : categorys 
-        static List<string> categorys = new List<string>()
+        //global methods
+        readonly static List<string> ERRORMESSAGES = new List<string>()
         {
-            "Laptop", "Desktop", "Other (such as smartphone or drone)"
+            "ERROR: You must enter a value between 1-10000", "ERROR: You must enter a value between 1-1000"
         };
+
+
 
         //methods
 
+
+        //Asks user a series of questions to gather necessary data needed then displaying data
         private static void DeviceDetails()
         {
 
-            //global variables
+            //initialise a list of strings : categorys 
+            List<string> CATEGORYS = new List<string>()
+            { "Laptop", "Desktop", "Other (such as smartphone or drone)" };
+            CATEGORYS.AsReadOnly();
+            
+
+            //variables
             string category, deviceName;
             float deviceCost, deviceNumber;
 
-            category = MenuChoice("category", categorys);
+            category = MenuChoice("category", CATEGORYS);
             Console.Clear();
 
             deviceName = CheckDeviceName();
@@ -93,7 +100,7 @@
 
         }
 
-        //calculating insurance
+        //checking if the user has entered more than 5 device and if true user recieves a 10% discount
         static float CalculateInsurance(float deviceCost, float numberOfDevices)
         {
             float costOne;
@@ -114,7 +121,7 @@
 
         }
 
-        //calculating value loss over six months
+        //calculating value loss over six months by reducing the cost by 5% each month
         static void ValueLoss(float deviceCost)
         {
             float monthOne;
@@ -138,6 +145,8 @@
 
         }
 
+        
+
         static string MenuChoice(string menuType, List<string> listData)
         {
 
@@ -146,7 +155,7 @@
             return listData[CheckInt(menu, 1, listData.Count) - 1];
         }
 
-        //checking if integer entered is between 1 and 3
+        //checking if integer entered is between min and max and if not error message will appear
 
         static int CheckInt(string question, int min, int max)
         {
@@ -199,7 +208,7 @@
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        //seeing if user wants to add another device
+        //seeing if user wants to add another device by entering "x"
         static string Add()
         {
             while (true)
@@ -239,7 +248,7 @@
 
         }
 
-        //checking is device cost is a numeric number between 1 and 10000
+        //checking is device cost is a numeric number between 1 and 10000 and if not producess an error messqage
         static float DeviceCost()
         {
             while (true)
@@ -257,17 +266,17 @@
                         return deviceCost;
                     }
 
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-10000");
+                    DisplayErrorMessage(ERRORMESSAGES[0]);
                 }
                 catch
                 {
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-10000");
+                    DisplayErrorMessage(ERRORMESSAGES[0]);
                 }
 
             }
         }
 
-        //checking is device cost is a numeric number between 1 and 1000
+        //checking is device cost is a numeric number between 1 and 1000 and if not producess an error message
         static float NumberOfDevices()
         {
             while (true)
@@ -285,11 +294,11 @@
                         return deviceNumber;
                     }
 
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-1000");
+                    DisplayErrorMessage(ERRORMESSAGES[1]);
                 }
                 catch
                 {
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-1000");
+                    DisplayErrorMessage(ERRORMESSAGES[1]);
                 }
 
 
