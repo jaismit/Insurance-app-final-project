@@ -39,25 +39,30 @@
 
         }
 
-
-
-
-        //initialise a list of strings : categorys 
-        static List<string> categorys = new List<string>()
+        //global methods
+        readonly static List<string> ERRORMESSAGES = new List<string>()
         {
-            "Laptop", "Desktop", "Other (such as smartphone or drone)"
+            "ERROR: You must enter a value between 1-10000", "ERROR: You must enter a value between 1-1000"
         };
+
+
 
         //methods
 
         private static void DeviceDetails()
         {
 
-            //global variables
+            //initialise a list of strings : categorys 
+            List<string> CATEGORYS = new List<string>()
+            { "Laptop", "Desktop", "Other (such as smartphone or drone)" };
+            CATEGORYS.AsReadOnly();
+            
+
+            //variables
             string category, deviceName;
             float deviceCost, deviceNumber;
 
-            category = MenuChoice("category", categorys);
+            category = MenuChoice("category", CATEGORYS);
             Console.Clear();
 
             deviceName = CheckDeviceName();
@@ -257,11 +262,11 @@
                         return deviceCost;
                     }
 
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-10000");
+                    DisplayErrorMessage(ERRORMESSAGES[0]);
                 }
                 catch
                 {
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-10000");
+                    DisplayErrorMessage(ERRORMESSAGES[0]);
                 }
 
             }
@@ -285,11 +290,11 @@
                         return deviceNumber;
                     }
 
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-1000");
+                    DisplayErrorMessage(ERRORMESSAGES[1]);
                 }
                 catch
                 {
-                    DisplayErrorMessage("ERROR: You must enter a value between 1-1000");
+                    DisplayErrorMessage(ERRORMESSAGES[1]);
                 }
 
 
